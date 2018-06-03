@@ -7,27 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartUpPageComponent, GameMainPageComponent, GameResultPageComponent } from './pages';
 import { GameBoardComponent, EmojiComponent } from './components';
-import { GameService } from './services/game.service';
+import { GameService, TimerService } from './services';
+import { ToMinutesPipe } from './pipes';
 
-const pageComponents = [
-  StartUpPageComponent,
-  GameMainPageComponent,
-  GameResultPageComponent,
-];
-
-const components = [
-  GameBoardComponent,
-  EmojiComponent,
-];
-
-const services = [
-  GameService,
-];
+const pageComponents = [StartUpPageComponent, GameMainPageComponent, GameResultPageComponent];
+const components = [GameBoardComponent, EmojiComponent];
+const services = [GameService, TimerService];
+const pipes = [ToMinutesPipe];
 
 @NgModule({
-  declarations: [AppComponent, ...pageComponents, ...components],
+  declarations: [AppComponent, ...pageComponents, ...components, ...pipes],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule],
-  providers: [...services],
+  providers: [...services, ...pipes],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

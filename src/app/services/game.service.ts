@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Emoji, emoji as AllEmoji, random as randomEmoji, find as findEmoji } from 'node-emoji';
 import { range, random, includes } from 'lodash';
 
@@ -11,14 +12,14 @@ export interface GameEmoji {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GameService {
-  emojis: GameEmoji[] = [];
+  emojis$ = new BehaviorSubject<GameEmoji[]>([]);
   selectedEmojiKey = '';
 
-  get gameEmojis(): GameEmoji[] {
-    return this.emojis;
+  get gameEmojis(): Observable<GameEmoji[]> {
+    return this.emojis$.asObservable();
   }
 
   constructor() {}
@@ -31,12 +32,12 @@ export class GameService {
       return;
     }
 
-    this.emojis = range(0, count).map(() => this.getUniqueRandomEmoji());
+    this.emojis$.next(range(0, count).map(() => this.getUniqueRandomEmoji()));
   }
 
   /**
    * In the game one emoji appears only once.
-  */
+   */
   getUniqueRandomEmoji(): GameEmoji {
     let emoji: GameEmoji;
     let include = true;
@@ -48,14 +49,14 @@ export class GameService {
           secondary: false,
         },
       };
-      include = includes(this.emojis, emoji) ? true : false;
+      include = includes(this.emojis$.getValue(), emoji) ? true : false;
     }
     return emoji;
   }
 
   /**
    * The upper limit which is unique is the number of emoji recorded by node-emoji.
-  */
+   */
   getAllEmojiCount(): number {
     return Object.keys(AllEmoji).length;
   }
@@ -65,11 +66,11 @@ export class GameService {
    * it performs matching and clear.
    */
   selectEmoji(key: string, isPrime: boolean): void {
-    const selectIndex = this.emojis.findIndex((item: GameEmoji) => {
+    const selectIndex = this.emojis$.getValue().findIndex((item: GameEmoji) => {
       return item.emoji.key === key;
     });
 
-    const previousSelectIndex = this.emojis.findIndex((item: GameEmoji) => {
+    const previousSelectIndex = this.emojis$.getValue().findIndex((item: GameEmoji) => {
       return item.emoji.key === this.selectedEmojiKey;
     });
 
@@ -77,27 +78,33 @@ export class GameService {
       this.clearEmoji(key);
       return;
     } else {
+      const syncEmojis = this.emojis$.getValue();
       if (isPrime) {
-        this.emojis[selectIndex].selected.primary = true;
+        syncEmojis[selectIndex].selected.primary = true;
+        this.emojis$.next(syncEmojis);
       } else {
-        this.emojis[selectIndex].selected.secondary = true;
+        syncEmojis[selectIndex].selected.secondary = true;
+        this.emojis$.next(syncEmojis);
       }
 
       if (previousSelectIndex >= 0) {
-        this.emojis[previousSelectIndex].selected.primary = false;
-        this.emojis[previousSelectIndex].selected.secondary = false;
+        syncEmojis[previousSelectIndex].selected.primary = false;
+        syncEmojis[previousSelectIndex].selected.secondary = false;
+        this.emojis$.next(syncEmojis);
       }
       this.selectedEmojiKey = key;
     }
   }
 
-
   isSElectedEmoji(key: string, isPrime: boolean): boolean {
-    const selectIndex = this.emojis.findIndex((item: GameEmoji) => {
+    const selectIndex = this.emojis$.getValue().findIndex((item: GameEmoji) => {
       return item.emoji.key === key;
     });
 
-    if ((this.emojis[selectIndex].selected.primary && !isPrime) || (this.emojis[selectIndex].selected.secondary && isPrime)) {
+    if (
+      (this.emojis$.getValue()[selectIndex].selected.primary && !isPrime) ||
+      (this.emojis$.getValue()[selectIndex].selected.secondary && isPrime)
+    ) {
       return true;
     } else {
       return false;
@@ -105,10 +112,15 @@ export class GameService {
   }
 
   clearEmoji(key: string): void {
-    const clearIndex = this.emojis.findIndex((item: GameEmoji) => {
-      return item.emoji.key === key;
-    });
+    const syncEmojis = this.emojis$.getValue();
+    const cleard = syncEmojis.filter((emoji: GameEmoji) => emoji.emoji.key !== key);
+    this.emojis$.next(cleard);
+  }
 
-    this.emojis.splice(clearIndex, 1);
+  /**
+   * destruct instance data.
+   */
+  destroy(): void {
+    this.emojis$ = new BehaviorSubject<GameEmoji[]>([]);
   }
 }

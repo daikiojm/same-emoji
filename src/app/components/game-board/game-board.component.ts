@@ -1,24 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { GameService, GameEmoji } from '../../services/game.service';
+import { GameService, GameEmoji } from '../../services';
 
 @Component({
   selector: 'se-game-board',
   templateUrl: './game-board.component.html',
-  styleUrls: ['./game-board.component.scss']
+  styleUrls: ['./game-board.component.scss'],
 })
-export class GameBoardComponent implements OnInit {
-  emojis: GameEmoji[] = [];
-  clones: GameEmoji[] = [];
+export class GameBoardComponent implements OnInit, OnDestroy {
+  emojis$ = new Observable<GameEmoji[]>();
+  clones$ = new Observable<GameEmoji[]>();
 
-  constructor(private gameService: GameService) {
-    this.gameService.initEmojis(20);
-  }
+  constructor(private gameService: GameService) {}
 
   ngOnInit() {
-    this.emojis = this.gameService.gameEmojis;
-    // this.clones = this.emojis.map((emoji: GameEmoji) => ({ ...emoji }));
-    this.clones = this.gameService.gameEmojis;
+    // init game board data.
+    this.gameService.initEmojis(20);
+    this.emojis$ = this.gameService.gameEmojis;
+    this.clones$ = this.gameService.gameEmojis;
+  }
+
+  ngOnDestroy() {
+    this.gameService.destroy();
   }
 
   onClickEmoji(key: string): void {

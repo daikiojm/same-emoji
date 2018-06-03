@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'start',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'start',
@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'result',
     component: GameResultPageComponent,
-  }
+  },
 ];
 
 @NgModule({

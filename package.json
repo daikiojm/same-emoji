@@ -8,13 +8,14 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "format:ts && format:md",
     "format:ts": "prettier --config .prettierrc --write 'src/**/*.ts'",
-    "format:md": "prettier --parser markdown --write '**/*.md'"
+    "format:md": "prettier --parser markdown --write '**/*.md'",
+    "format": "npm run format:ts && npm run format:md"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^6.0.3",
+    "@angular/cdk": "^6.2.0",
     "@angular/common": "^6.0.3",
     "@angular/compiler": "^6.0.3",
     "@angular/core": "^6.0.3",
@@ -24,12 +25,13 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@types/moment": "^2.13.0",
     "core-js": "^2.5.4",
-    "rxjs": "^6.0.0",
     "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "node-emoji": "^1.8.1",
-    "zone.js": "^0.8.26",
-    "@angular/cdk": "^6.2.0"
+    "rxjs": "^6.0.0",
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^6.0.3",

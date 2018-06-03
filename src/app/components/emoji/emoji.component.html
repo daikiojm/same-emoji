@@ -1,5 +1,6 @@
 <span
   [className]="emoji.emoji.key + ' emoji'"
   [ngStyle]="position"
+  [@emojiState]="state"
   (click)="onClickEmoji(emoji.emoji.key)"
 >{{ emoji?.emoji.emoji }}</span>
