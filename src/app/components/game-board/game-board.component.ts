@@ -12,7 +12,7 @@ export class GameBoardComponent implements OnInit {
   clones: GameEmoji[] = [];
 
   constructor(private gameService: GameService) {
-    this.gameService.initEmojis(200);
+    this.gameService.initEmojis(20);
   }
 
   ngOnInit() {

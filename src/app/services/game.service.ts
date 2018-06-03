@@ -69,16 +69,25 @@ export class GameService {
       return item.emoji.key === key;
     });
 
+    const previousSelectIndex = this.emojis.findIndex((item: GameEmoji) => {
+      return item.emoji.key === this.selectedEmojiKey;
+    });
+
     if (this.isSElectedEmoji(key, isPrime)) {
       this.clearEmoji(key);
       return;
     } else {
-      this.selectedEmojiKey = key;
       if (isPrime) {
         this.emojis[selectIndex].selected.primary = true;
       } else {
         this.emojis[selectIndex].selected.secondary = true;
       }
+
+      if (previousSelectIndex >= 0) {
+        this.emojis[previousSelectIndex].selected.primary = false;
+        this.emojis[previousSelectIndex].selected.secondary = false;
+      }
+      this.selectedEmojiKey = key;
     }
   }
 

@@ -1,1 +1,5 @@
-<span [className]="emoji.emoji.key" (click)="onClickEmoji(emoji.emoji.key)">{{ emoji?.emoji.emoji }}</span>
+<span
+  [className]="emoji.emoji.key + ' emoji'"
+  [ngStyle]="position"
+  (click)="onClickEmoji(emoji.emoji.key)"
+>{{ emoji?.emoji.emoji }}</span>
