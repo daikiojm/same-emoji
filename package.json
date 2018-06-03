@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "prettier --config .prettierrc --write 'src/**/*.ts'"
+    "format": "format:ts && format:md",
+    "format:ts": "prettier --config .prettierrc --write 'src/**/*.ts'",
+    "format:md": "prettier --parser markdown --write '**/*.md'"
   },
   "private": true,
   "dependencies": {

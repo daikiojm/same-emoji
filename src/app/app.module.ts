@@ -6,6 +6,8 @@ import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartUpPageComponent, GameMainPageComponent, GameResultPageComponent } from './pages';
+import { GameBoardComponent, EmojiComponent } from './components';
+import { GameService } from './services/game.service';
 
 const pageComponents = [
   StartUpPageComponent,
@@ -13,12 +15,17 @@ const pageComponents = [
   GameResultPageComponent,
 ];
 
-const components = [];
+const components = [
+  GameBoardComponent,
+  EmojiComponent,
+];
 
-const services = [];
+const services = [
+  GameService,
+];
 
 @NgModule({
-  declarations: [AppComponent, ...pageComponents, ...components, GameResultPageComponent, GameMainPageComponent, StartUpPageComponent],
+  declarations: [AppComponent, ...pageComponents, ...components],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule],
   providers: [...services],
   bootstrap: [AppComponent],
