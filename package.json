@@ -8,6 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "deploy": "firebase deploy --only hosting",
+    "build:deploy": "npm run build && npm run deploy",
     "format:ts": "prettier --config .prettierrc --write 'src/**/*.ts'",
     "format:md": "prettier --parser markdown --write '**/*.md'",
     "format": "npm run format:ts && npm run format:md"
