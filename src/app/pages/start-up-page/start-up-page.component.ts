@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'se-start-up-page',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./start-up-page.component.scss'],
 })
 export class StartUpPageComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  onClickStart(): void {
+    this.router.navigate(['/play']);
+  }
 }
