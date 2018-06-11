@@ -1,2 +1,4 @@
-<se-game-board></se-game-board>
-<p> {{ gameClock$ | async | toMinutes }}</p>
+<div class="se-container">
+  <se-game-board></se-game-board>
+  <p class="game-timer">TIME: {{ gameClock$ | async | toMinutes }}</p>
+</div>

@@ -3,6 +3,9 @@
 html, body {
   background-color: $BACKGROUND-GRAY;
   color: $TEXT-GRAY;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 // grobal read style
@@ -16,8 +19,9 @@ html, body {
 
 .se-container {
   text-align: center;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   overflow: hidden;
+  margin: 0;
   @include font;
 }

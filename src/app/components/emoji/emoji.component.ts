@@ -5,6 +5,8 @@ import { GameEmoji } from '../../services';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 
+const RANGE_OFSET = 15;
+
 @Component({
   selector: 'se-emoji',
   templateUrl: './emoji.component.html',
@@ -43,15 +45,15 @@ export class EmojiComponent implements OnInit, OnChanges {
 
   get position(): { [key: string]: string } {
     return {
-      top: `${this.positionX}px`,
-      left: `${this.positionY}px`,
+      top: `${this.positionY}px`,
+      left: `${this.positionX}px`,
     };
   }
 
   ngOnInit() {
     // set random emoji position.
-    this.positionX = random(0, this.rangeX);
-    this.positionY = random(0, this.rangeY);
+    this.positionX = random(RANGE_OFSET, this.rangeX - RANGE_OFSET);
+    this.positionY = random(RANGE_OFSET, this.rangeY - RANGE_OFSET);
   }
 
   ngOnChanges() {
@@ -60,8 +62,10 @@ export class EmojiComponent implements OnInit, OnChanges {
 
   onClickEmoji(key: string): void {
     this.state = 'active';
-    timer(500, 1000).pipe(take(1)).subscribe(() => {
-      this.clickEmoji.emit(key);
-    });
+    timer(500, 1000)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.clickEmoji.emit(key);
+      });
   }
 }

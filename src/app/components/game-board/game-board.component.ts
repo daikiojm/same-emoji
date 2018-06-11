@@ -11,6 +11,8 @@ import { GameService, GameEmoji } from '../../services';
 export class GameBoardComponent implements OnInit, OnDestroy {
   emojis$ = new Observable<GameEmoji[]>();
   clones$ = new Observable<GameEmoji[]>();
+  rangeX = 400;
+  rangeY = 600;
 
   constructor(private gameService: GameService) {}
 
@@ -19,6 +21,10 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.gameService.initEmojis(20);
     this.emojis$ = this.gameService.gameEmojis;
     this.clones$ = this.gameService.gameEmojis;
+
+    // init range from window size.
+    this.rangeX = window.innerWidth;
+    this.rangeY = window.innerHeight;
   }
 
   ngOnDestroy() {

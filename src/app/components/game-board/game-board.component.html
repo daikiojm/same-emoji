@@ -1,7 +1,17 @@
 <ng-container *ngFor="let emoji of emojis$ | async">
-  <se-emoji [emoji]="emoji" [change]="emoji.selected.primary" (clickEmoji)="onClickEmoji($event)"></se-emoji>
+  <se-emoji
+  [emoji]="emoji"
+  [change]="emoji.selected.primary"
+  [rangeX]="rangeX"
+  [rangeY]="rangeY"
+  (clickEmoji)="onClickEmoji($event)"></se-emoji>
 </ng-container>
 
 <ng-container *ngFor="let emoji of clones$ | async">
-  <se-emoji [emoji]="emoji" [change]="emoji.selected.secondary" (clickEmoji)="onClickClone($event)"></se-emoji>
+  <se-emoji
+  [emoji]="emoji"
+  [change]="emoji.selected.secondary"
+  [rangeX]="rangeX"
+  [rangeY]="rangeY"
+  (clickEmoji)="onClickClone($event)"></se-emoji>
 </ng-container>
