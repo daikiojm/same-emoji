@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { GameService, GameEmoji } from '../../services';
+import { GameEmoji, GameService } from '../../services';
 
 @Component({
   selector: 'se-game-board',

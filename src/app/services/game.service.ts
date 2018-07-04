@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { includes, random, range } from 'lodash';
+import { emoji as AllEmoji, Emoji, find as findEmoji, random as randomEmoji } from 'node-emoji';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Emoji, emoji as AllEmoji, random as randomEmoji, find as findEmoji } from 'node-emoji';
-import { range, random, includes } from 'lodash';
 
 export interface GameEmoji {
   emoji: Emoji;

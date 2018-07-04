@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { timer, Observable, of, Subject } from 'rxjs';
+import { Observable, Subject, of, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Injectable({

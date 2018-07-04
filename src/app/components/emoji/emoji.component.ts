@@ -1,9 +1,10 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { random } from 'lodash';
-import { GameEmoji } from '../../services';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
+
+import { GameEmoji } from '../../services';
 
 const RANGE_OFSET = 15;
 
