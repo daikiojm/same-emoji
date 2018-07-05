@@ -13,7 +13,8 @@
     "format:ts": "prettier --config .prettierrc --write 'src/**/*.ts'",
     "format:md": "prettier --parser markdown --write '**/*.md'",
     "format:ts-import": "import-sort --write 'src/**/*.ts'",
-    "format": "npm run format:ts && npm run format:md && npm run format:ts-import"
+    "format:css": "gulp csscomb",
+    "format": "npm run format:ts && npm run format:md && npm run format:ts-import && npm run format:css"
   },
   "private": true,
   "dependencies": {
@@ -47,6 +48,8 @@
     "@types/node": "~8.9.4",
     "@types/node-emoji": "^1.8.0",
     "codelyzer": "~4.2.1",
+    "csscomb": "^4.2.0",
+    "gulp": "^3.9.1",
     "import-sort": "^5.0.0",
     "import-sort-cli": "^5.0.0",
     "import-sort-parser-typescript": "^5.0.0",

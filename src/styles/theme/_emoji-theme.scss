@@ -2,8 +2,8 @@
 @include mat-core();
 
 $emoji-theme-primary: mat-palette($mat-grey);
-$emoji-theme-accent:  mat-palette($mat-blue-grey, 500, 900, A100);
-$emoji-theme-warn:    mat-palette($mat-brown);
+$emoji-theme-accent: mat-palette($mat-blue-grey, 500, 900, A100);
+$emoji-theme-warn: mat-palette($mat-brown);
 
 $emoji-theme: mat-light-theme($emoji-theme-primary, $emoji-theme-accent, $emoji-theme-warn);
 

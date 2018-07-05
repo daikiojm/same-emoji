@@ -1,6 +1,7 @@
 @import '../variables/index';
 
-html, body {
+html,
+body {
   background-color: $BACKGROUND-GRAY;
   color: $TEXT-GRAY;
   height: 100%;
@@ -12,16 +13,17 @@ html, body {
 
 
 @mixin font {
-  font-size: 18px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 18px;
   font-weight: normal;
 }
 
 .se-container {
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  margin: 0;
   @include font;
+
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
 }

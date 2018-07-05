@@ -1,12 +1,12 @@
 se-game-board {
+  left: 0;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
 }
 
 .game-timer {
-  position: absolute;
-  top: 10px;
   left: 10px;
   margin: 0;
+  position: absolute;
+  top: 10px;
 }
