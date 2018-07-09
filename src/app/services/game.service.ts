@@ -1,38 +1,40 @@
 import { Injectable } from '@angular/core';
-import { includes, random, range } from 'lodash';
-import { emoji as AllEmoji, Emoji, find as findEmoji, random as randomEmoji } from 'node-emoji';
+import { includes, range } from 'lodash';
+import { emoji as AllEmoji, random as randomEmoji } from 'node-emoji';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 
-export interface GameEmoji {
-  emoji: Emoji;
-  selected: {
-    primary: boolean;
-    secondary: boolean;
-  };
-}
+import { GameEmoji, GameStatus, Status } from '../types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
-  emojis$ = new BehaviorSubject<GameEmoji[]>([]);
-  selectedEmojiKey = '';
+  private selectedEmojiKey = '';
+  private emojiCount = 0;
+  private _emojis$ = new BehaviorSubject<GameEmoji[]>([]);
 
-  get gameEmojis(): Observable<GameEmoji[]> {
-    return this.emojis$.asObservable();
+  get emojis$(): Observable<GameEmoji[]> {
+    return this._emojis$.asObservable();
+  }
+
+  get gameStatus$(): Observable<GameStatus> {
+    return this.getGameStatus$();
   }
 
   constructor() {}
 
   /** Init game borad items(emojis). */
   initEmojis(count: number): void {
+    this.emojiCount = count;
+
     const limit = this.getAllEmojiCount();
     // Abort if greater than the limit of node-emoji.
     if (count >= limit) {
       return;
     }
 
-    this.emojis$.next(range(0, count).map(() => this.getUniqueRandomEmoji()));
+    this._emojis$.next(range(0, count).map(() => this.getUniqueRandomEmoji()));
   }
 
   /**
@@ -49,7 +51,7 @@ export class GameService {
           secondary: false,
         },
       };
-      include = includes(this.emojis$.getValue(), emoji) ? true : false;
+      include = includes(this._emojis$.getValue(), emoji) ? true : false;
     }
     return emoji;
   }
@@ -66,11 +68,11 @@ export class GameService {
    * it performs matching and clear.
    */
   selectEmoji(key: string, isPrime: boolean): void {
-    const selectIndex = this.emojis$.getValue().findIndex((item: GameEmoji) => {
+    const selectIndex = this._emojis$.getValue().findIndex((item: GameEmoji) => {
       return item.emoji.key === key;
     });
 
-    const previousSelectIndex = this.emojis$.getValue().findIndex((item: GameEmoji) => {
+    const previousSelectIndex = this._emojis$.getValue().findIndex((item: GameEmoji) => {
       return item.emoji.key === this.selectedEmojiKey;
     });
 
@@ -78,32 +80,32 @@ export class GameService {
       this.clearEmoji(key);
       return;
     } else {
-      const syncEmojis = this.emojis$.getValue();
+      const syncEmojis = this._emojis$.getValue();
       if (isPrime) {
         syncEmojis[selectIndex].selected.primary = true;
-        this.emojis$.next(syncEmojis);
+        this._emojis$.next(syncEmojis);
       } else {
         syncEmojis[selectIndex].selected.secondary = true;
-        this.emojis$.next(syncEmojis);
+        this._emojis$.next(syncEmojis);
       }
 
       if (previousSelectIndex >= 0) {
         syncEmojis[previousSelectIndex].selected.primary = false;
         syncEmojis[previousSelectIndex].selected.secondary = false;
-        this.emojis$.next(syncEmojis);
+        this._emojis$.next(syncEmojis);
       }
       this.selectedEmojiKey = key;
     }
   }
 
   isSElectedEmoji(key: string, isPrime: boolean): boolean {
-    const selectIndex = this.emojis$.getValue().findIndex((item: GameEmoji) => {
+    const selectIndex = this._emojis$.getValue().findIndex((item: GameEmoji) => {
       return item.emoji.key === key;
     });
 
     if (
-      (this.emojis$.getValue()[selectIndex].selected.primary && !isPrime) ||
-      (this.emojis$.getValue()[selectIndex].selected.secondary && isPrime)
+      (this._emojis$.getValue()[selectIndex].selected.primary && !isPrime) ||
+      (this._emojis$.getValue()[selectIndex].selected.secondary && isPrime)
     ) {
       return true;
     } else {
@@ -112,15 +114,40 @@ export class GameService {
   }
 
   clearEmoji(key: string): void {
-    const syncEmojis = this.emojis$.getValue();
+    const syncEmojis = this._emojis$.getValue();
     const cleard = syncEmojis.filter((emoji: GameEmoji) => emoji.emoji.key !== key);
-    this.emojis$.next(cleard);
+    this._emojis$.next(cleard);
   }
 
   /**
    * destruct instance data.
    */
   destroy(): void {
-    this.emojis$ = new BehaviorSubject<GameEmoji[]>([]);
+    this.emojiCount = 0;
+    this._emojis$ = new BehaviorSubject<GameEmoji[]>([]);
+  }
+
+  private getClearedEmojiCount$(): Observable<number> {
+    return this.emojis$.pipe(
+      distinctUntilChanged(),
+      map((emojis) => emojis.length),
+      map((current) => this.emojiCount - current),
+    );
+  }
+
+  private getGameStatus$(): Observable<GameStatus> {
+    return this.getClearedEmojiCount$().pipe(
+      map((clearedEmojiCount: number) => {
+        const gameStatus: Status = clearedEmojiCount === this.emojiCount ? 'clear' : 'inprogress';
+
+        return {
+          score: {
+            cleared: clearedEmojiCount,
+            base: this.emojiCount,
+          },
+          status: gameStatus,
+        };
+      }),
+    );
   }
 }

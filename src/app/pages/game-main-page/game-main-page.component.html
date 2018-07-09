@@ -1,4 +1,6 @@
 <div class="se-container">
-  <se-game-board></se-game-board>
   <p class="game-timer">TIME: {{ gameClock$ | async | toMinutes }}</p>
+  <p class="game-score" *ngIf="gameStatus$ | async as status">SCORE: {{ status?.score.cleared }} / {{ status?.score.base }}</p>
+
+  <se-game-board></se-game-board>
 </div>

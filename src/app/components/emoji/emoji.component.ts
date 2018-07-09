@@ -4,7 +4,7 @@ import { random } from 'lodash';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { GameEmoji } from '../../services';
+import { GameEmoji } from '../../types';
 
 const RANGE_OFSET = 15;
 
