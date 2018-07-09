@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { includes, range } from 'lodash';
 import { emoji as AllEmoji, random as randomEmoji } from 'node-emoji';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged, map } from 'rxjs/operators';
+import { distinctUntilChanged, map, skip } from 'rxjs/operators';
 
 import { GameEmoji, GameStatus, Status } from '../types';
 
@@ -21,8 +21,6 @@ export class GameService {
   get gameStatus$(): Observable<GameStatus> {
     return this.getGameStatus$();
   }
-
-  constructor() {}
 
   /** Init game borad items(emojis). */
   initEmojis(count: number): void {
@@ -137,6 +135,7 @@ export class GameService {
 
   private getGameStatus$(): Observable<GameStatus> {
     return this.getClearedEmojiCount$().pipe(
+      skip(1),
       map((clearedEmojiCount: number) => {
         const gameStatus: Status = clearedEmojiCount === this.emojiCount ? 'clear' : 'inprogress';
 

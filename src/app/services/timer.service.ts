@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of, timer } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TimerService {
-  private _timer$: Observable<number> = of(0);
+  private _timer$ = new BehaviorSubject<number>(0);
   private stopped$ = new Subject<true>();
 
   get timer$(): Observable<number> {
-    return this._timer$;
+    return this._timer$.asObservable();
   }
 
   startTimer(): void {
-    this._timer$ = timer(0, 1000).pipe(takeUntil(this.stopped$));
+    timer(0, 1000)
+      .pipe(takeUntil(this.stopped$))
+      .subscribe((time: number) => {
+        this._timer$.next(time);
+      });
   }
 
   stopTimer(): void {
@@ -22,7 +26,7 @@ export class TimerService {
   }
 
   destroy(): void {
-    this._timer$ = of(0);
+    this._timer$.complete();
     this.stopped$.complete();
   }
 }

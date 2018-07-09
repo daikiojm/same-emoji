@@ -51,13 +51,13 @@ export class EmojiComponent implements OnInit, OnChanges {
     };
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // set random emoji position.
     this.positionX = random(RANGE_OFSET, this.rangeX - RANGE_OFSET);
     this.positionY = random(RANGE_OFSET, this.rangeY - RANGE_OFSET);
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.state = this.change ? 'active' : 'inactive';
   }
 
