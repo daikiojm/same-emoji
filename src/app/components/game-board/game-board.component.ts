@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { GameService } from '../../services';
-import { GameEmoji, GameStatus } from '../../types';
+import { GameEmoji } from '../../types';
 
 const emojiCount = 5;
 
@@ -31,9 +31,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.rangeY = window.innerHeight;
   }
 
-  ngOnDestroy() {
-    this.gameService.destroy();
-  }
+  ngOnDestroy() {}
 
   onClickEmoji(key: string): void {
     this.gameService.selectEmoji(key, true);

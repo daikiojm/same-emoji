@@ -15,5 +15,6 @@ export interface GameStatus {
     cleared: number;
     base: number;
   };
+  mistakes: number;
   status: Status;
 }

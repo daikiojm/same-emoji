@@ -1,4 +1,24 @@
-<p>
-  game-result-page works!
-</p>
-<p>{{ resultTime }}</p>
+<div class="se-container">
+  <div class="result-wrapper">
+
+    <div class="result">
+      <h3>Game Clear 🎊</h3>
+
+      <mat-divider></mat-divider>
+      <p class="result-item">TIME: {{ resultTime | toMinutes }}</p>
+      <mat-divider></mat-divider>
+      <p>MISTAKES: {{ mistakes }}</p>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="control-section">
+        <button
+        mat-stroked-button
+        color="primary"
+        (click)="retry()"
+        >Retry</button>
+    </div>
+
+  </div>
+</div>
+

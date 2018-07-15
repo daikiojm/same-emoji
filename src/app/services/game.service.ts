@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { includes, range } from 'lodash';
 import { emoji as AllEmoji, random as randomEmoji } from 'node-emoji';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged, map, skip } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, skip } from 'rxjs/operators';
 
 import { GameEmoji, GameStatus, Status } from '../types';
 
@@ -12,15 +12,19 @@ import { GameEmoji, GameStatus, Status } from '../types';
 export class GameService {
   private selectedEmojiKey = '';
   private emojiCount = 0;
+  private mistakes = 0;
   private _emojis$ = new BehaviorSubject<GameEmoji[]>([]);
+  private _gameStatus$ = new BehaviorSubject<GameStatus | null>(null);
 
   get emojis$(): Observable<GameEmoji[]> {
     return this._emojis$.asObservable();
   }
 
   get gameStatus$(): Observable<GameStatus> {
-    return this.getGameStatus$();
+    return this._gameStatus$.asObservable().pipe(filter((status) => !!status));
   }
+
+  initGame(level: number): void {}
 
   /** Init game borad items(emojis). */
   initEmojis(count: number): void {
@@ -32,6 +36,7 @@ export class GameService {
       return;
     }
 
+    this.initGameStatus();
     this._emojis$.next(range(0, count).map(() => this.getUniqueRandomEmoji()));
   }
 
@@ -55,13 +60,6 @@ export class GameService {
   }
 
   /**
-   * The upper limit which is unique is the number of emoji recorded by node-emoji.
-   */
-  getAllEmojiCount(): number {
-    return Object.keys(AllEmoji).length;
-  }
-
-  /**
    * If emoji is selected,
    * it performs matching and clear.
    */
@@ -74,7 +72,7 @@ export class GameService {
       return item.emoji.key === this.selectedEmojiKey;
     });
 
-    if (this.isSElectedEmoji(key, isPrime)) {
+    if (this.isSelectedEmoji(key, isPrime)) {
       this.clearEmoji(key);
       return;
     } else {
@@ -88,26 +86,14 @@ export class GameService {
       }
 
       if (previousSelectIndex >= 0) {
+        // inclement mistake count
+        this.mistakes += 1;
+
         syncEmojis[previousSelectIndex].selected.primary = false;
         syncEmojis[previousSelectIndex].selected.secondary = false;
         this._emojis$.next(syncEmojis);
       }
       this.selectedEmojiKey = key;
-    }
-  }
-
-  isSElectedEmoji(key: string, isPrime: boolean): boolean {
-    const selectIndex = this._emojis$.getValue().findIndex((item: GameEmoji) => {
-      return item.emoji.key === key;
-    });
-
-    if (
-      (this._emojis$.getValue()[selectIndex].selected.primary && !isPrime) ||
-      (this._emojis$.getValue()[selectIndex].selected.secondary && isPrime)
-    ) {
-      return true;
-    } else {
-      return false;
     }
   }
 
@@ -122,7 +108,31 @@ export class GameService {
    */
   destroy(): void {
     this.emojiCount = 0;
+    this.mistakes = 0;
     this._emojis$ = new BehaviorSubject<GameEmoji[]>([]);
+    this._gameStatus$ = new BehaviorSubject<GameStatus | null>(null);
+  }
+
+  private isSelectedEmoji(key: string, isPrime: boolean): boolean {
+    const selectIndex = this._emojis$.getValue().findIndex((item: GameEmoji) => {
+      return item.emoji.key === key;
+    });
+
+    if (
+      (this._emojis$.getValue()[selectIndex].selected.primary && !isPrime) ||
+      (this._emojis$.getValue()[selectIndex].selected.secondary && isPrime)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * The upper limit which is unique is the number of emoji recorded by node-emoji.
+   */
+  private getAllEmojiCount(): number {
+    return Object.keys(AllEmoji).length;
   }
 
   private getClearedEmojiCount$(): Observable<number> {
@@ -131,6 +141,14 @@ export class GameService {
       map((emojis) => emojis.length),
       map((current) => this.emojiCount - current),
     );
+  }
+
+  private initGameStatus(): void {
+    this.getGameStatus$()
+      .pipe(distinctUntilChanged())
+      .subscribe((status: GameStatus) => {
+        this._gameStatus$.next(status);
+      });
   }
 
   private getGameStatus$(): Observable<GameStatus> {
@@ -144,6 +162,7 @@ export class GameService {
             cleared: clearedEmojiCount,
             base: this.emojiCount,
           },
+          mistakes: this.mistakes / 2,
           status: gameStatus,
         };
       }),
