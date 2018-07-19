@@ -1,7 +1,5 @@
 @import 'common';
 
-$button-linear-gradient: linear-gradient(180deg, #a64bf2, #8c3be0 30%);
-
 .start-up-wrapper {
   color: $TEXT-BLACK;
   display: flex;
@@ -15,6 +13,7 @@ $button-linear-gradient: linear-gradient(180deg, #a64bf2, #8c3be0 30%);
   .main-title {
     margin-top: 40px;
   }
+  padding: 5vh 5vw;
 }
 
 .control-section {
@@ -25,13 +24,6 @@ $button-linear-gradient: linear-gradient(180deg, #a64bf2, #8c3be0 30%);
   width: 100%;
 
   .start-button {
-    background: $button-linear-gradient;
-    border: 2px solid #000000;
-    border-radius: 5px;
-    font-weight: 800;
-    height: 42px;
-    margin-bottom: 40px;
-    max-width: 320px;
-    width: 100%;
+    width: 80vw;
   }
 }
