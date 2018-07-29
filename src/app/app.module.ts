@@ -6,11 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmojiComponent, GameBoardComponent } from './components';
 import { MaterialModule } from './material/material.module';
-import { GameMainPageComponent, GameResultPageComponent, StartUpPageComponent } from './pages';
+import { GameLevelPageComponent, GameMainPageComponent, GameResultPageComponent, StartUpPageComponent } from './pages';
 import { ToMinutesPipe } from './pipes';
 import { GameService, TimerService } from './services';
 
-const pageComponents = [StartUpPageComponent, GameMainPageComponent, GameResultPageComponent];
+const pageComponents = [StartUpPageComponent, GameLevelPageComponent, GameMainPageComponent, GameResultPageComponent];
 const components = [GameBoardComponent, EmojiComponent];
 const services = [GameService, TimerService];
 const pipes = [ToMinutesPipe];

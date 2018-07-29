@@ -11,7 +11,11 @@ export class StartUpPageComponent implements OnInit {
 
   ngOnInit() {}
 
-  onClickStart(): void {
+  onClickQuiqStart(): void {
     this.router.navigate(['/play']);
+  }
+
+  onClickStart(): void {
+    this.router.navigate(['/level']);
   }
 }

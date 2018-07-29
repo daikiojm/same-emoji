@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { GameMainPageComponent, GameResultPageComponent, StartUpPageComponent } from './pages';
+import { GameLevelPageComponent, GameMainPageComponent, GameResultPageComponent, StartUpPageComponent } from './pages';
 
 const routes: Routes = [
   {
@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'start',
     component: StartUpPageComponent,
+  },
+  {
+    path: 'level',
+    component: GameLevelPageComponent,
   },
   {
     path: 'play',
