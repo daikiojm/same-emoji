@@ -4,13 +4,15 @@ import { emoji as AllEmoji, random as randomEmoji } from 'node-emoji';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map, skip } from 'rxjs/operators';
 
-import { GameEmoji, GameStatus, Status } from '../types';
+import { defaultLevel, gameLevels } from '../constants';
+import { GameEmoji, GameStatus, Level, Status } from '../types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
   private selectedEmojiKey = '';
+  private gameLevel: Level = 'normal';
   private emojiCount = 0;
   private mistakes = 0;
   private _emojis$ = new BehaviorSubject<GameEmoji[]>([]);
@@ -24,20 +26,15 @@ export class GameService {
     return this._gameStatus$.asObservable().pipe(filter((status) => !!status));
   }
 
-  initGame(level: number): void {}
-
-  /** Init game borad items(emojis). */
-  initEmojis(count: number): void {
-    this.emojiCount = count;
-
-    const limit = this.getAllEmojiCount();
-    // Abort if greater than the limit of node-emoji.
-    if (count >= limit) {
+  initGame(level?: Level): void {
+    if (this.emojiCount !== 0) {
       return;
     }
 
-    this.initGameStatus();
-    this._emojis$.next(range(0, count).map(() => this.getUniqueRandomEmoji()));
+    this.gameLevel = level || defaultLevel;
+
+    const emojiCount = gameLevels[this.gameLevel];
+    this.initEmojis(emojiCount);
   }
 
   /**
@@ -113,6 +110,20 @@ export class GameService {
     this._gameStatus$ = new BehaviorSubject<GameStatus | null>(null);
   }
 
+  /** Init game borad items(emojis). */
+  private initEmojis(count: number): void {
+    this.emojiCount = count;
+
+    const limit = this.getAllEmojiCount();
+    // Abort if greater than the limit of node-emoji.
+    if (count >= limit) {
+      return;
+    }
+
+    this.initGameStatus();
+    this._emojis$.next(range(0, count).map(() => this.getUniqueRandomEmoji()));
+  }
+
   private isSelectedEmoji(key: string, isPrime: boolean): boolean {
     const selectIndex = this._emojis$.getValue().findIndex((item: GameEmoji) => {
       return item.emoji.key === key;
@@ -158,6 +169,7 @@ export class GameService {
         const gameStatus: Status = clearedEmojiCount === this.emojiCount ? 'clear' : 'inprogress';
 
         return {
+          level: this.gameLevel,
           score: {
             cleared: clearedEmojiCount,
             base: this.emojiCount,

@@ -10,7 +10,9 @@
         <button
         mat-stroked-button
         class="button"
-        color="primary">{{ level | titlecase }}</button>
+        color="primary"
+        (click)="onClickLevelButton(level)"
+        >{{ level | titlecase }}</button>
       </ng-container>
     </div>
 

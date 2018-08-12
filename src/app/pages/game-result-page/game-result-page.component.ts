@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 
-import { GameStatus } from './../../types';
+import { defaultLevel } from '../../constants';
 import { GameService, TimerService } from '../../services';
+import { GameStatus } from '../../types';
 
 @Component({
   selector: 'se-game-result-page',
@@ -12,6 +13,7 @@ import { GameService, TimerService } from '../../services';
 })
 export class GameResultPageComponent implements OnInit, OnDestroy {
   resultTime = 0;
+  level = defaultLevel;
   mistakes = 0;
 
   constructor(private timerService: TimerService, private gameService: GameService, private router: Router) {}
@@ -22,6 +24,7 @@ export class GameResultPageComponent implements OnInit, OnDestroy {
     });
 
     this.gameService.gameStatus$.pipe(take(1)).subscribe((status: GameStatus) => {
+      this.level = status.level;
       this.mistakes = status.mistakes;
     });
   }

@@ -22,7 +22,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // init game board data.
-    this.gameService.initEmojis(emojiCount);
+    this.gameService.initGame();
     this.emojis$ = this.gameService.emojis$;
     this.clones$ = this.gameService.emojis$;
 
