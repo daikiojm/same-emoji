@@ -32,13 +32,19 @@ const RANGE_OFSET = 15;
   ],
 })
 export class EmojiComponent implements OnInit, OnChanges {
-  @Input() emoji: GameEmoji | null = null;
+  @Input()
+  emoji: GameEmoji | null = null;
   // Since the change event does not occur unless the primitive value is changed.
-  @Input() change = false;
-  @Input() active = false;
-  @Input() rangeX = 500;
-  @Input() rangeY = 500;
-  @Output() clickEmoji = new EventEmitter<string>();
+  @Input()
+  change = false;
+  @Input()
+  active = false;
+  @Input()
+  rangeX = 500;
+  @Input()
+  rangeY = 500;
+  @Output()
+  clickEmoji = new EventEmitter<string>();
 
   positionX = 0;
   positionY = 0;
