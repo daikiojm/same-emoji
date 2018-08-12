@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { StartUpPageComponent } from './start-up-page.component';
 
@@ -9,6 +10,7 @@ describe('StartUpPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [StartUpPageComponent],
+      imports: [RouterTestingModule.withRoutes([])],
     }).compileComponents();
   }));
 
