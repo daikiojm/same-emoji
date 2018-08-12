@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { GameLevelPageComponent } from './game-level-page.component';
+import { GameService } from '../../services';
 
 describe('GameLevelPageComponent', () => {
   let component: GameLevelPageComponent;
@@ -9,6 +11,8 @@ describe('GameLevelPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [GameLevelPageComponent],
+      imports: [RouterTestingModule.withRoutes([])],
+      providers: [{ provide: GameService, useClass: GameService }],
     }).compileComponents();
   }));
 

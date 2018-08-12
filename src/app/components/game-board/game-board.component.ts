@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { GameService } from '../../services';
 import { GameEmoji } from '../../types';
 
-const emojiCount = 5;
-
 @Component({
   selector: 'se-game-board',
   templateUrl: './game-board.component.html',
