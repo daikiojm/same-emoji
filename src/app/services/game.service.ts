@@ -26,6 +26,10 @@ export class GameService {
     return this._gameStatus$.asObservable().pipe(filter((status) => !!status));
   }
 
+  get gameInProgress(): boolean {
+    return this._gameStatus$.getValue() ? true : false;
+  }
+
   initGame(level?: Level): void {
     if (this.emojiCount !== 0) {
       return;

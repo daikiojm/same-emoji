@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { GameLevelPageComponent } from './game-level-page.component';
 import { GameService } from '../../services';
+import { GameLevelPageComponent } from './game-level-page.component';
 
 describe('GameLevelPageComponent', () => {
   let component: GameLevelPageComponent;

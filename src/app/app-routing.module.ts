@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { GameInProgressGuard, GameInterruptionGuard } from './guards';
 import { GameLevelPageComponent, GameMainPageComponent, GameResultPageComponent, StartUpPageComponent } from './pages';
 
 const routes: Routes = [
@@ -20,6 +21,8 @@ const routes: Routes = [
   {
     path: 'play',
     component: GameMainPageComponent,
+    canActivate: [GameInProgressGuard],
+    canDeactivate: [GameInterruptionGuard],
   },
   {
     path: 'result',
