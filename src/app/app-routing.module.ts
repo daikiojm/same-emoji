@@ -13,20 +13,24 @@ const routes: Routes = [
   {
     path: 'start',
     component: StartUpPageComponent,
+    data: { animation: 'start' },
   },
   {
     path: 'level',
     component: GameLevelPageComponent,
+    data: { animation: 'level' },
   },
   {
     path: 'play',
     component: GameMainPageComponent,
     canActivate: [GameInProgressGuard],
     canDeactivate: [GameInterruptionGuard],
+    data: { animation: 'play' },
   },
   {
     path: 'result',
     component: GameResultPageComponent,
+    data: { animation: 'result' },
   },
 ];
 

@@ -6,6 +6,15 @@ import { ToMinutesPipe } from '../../pipes';
 import { GameService, TimerService } from '../../services';
 import { GameMainPageComponent } from './game-main-page.component';
 
+/**
+ * Mock game-board component
+ */
+@Component({
+  selector: 'se-game-board',
+  template: '<div>Mock game-board component</div>',
+})
+class MockGameBoardComponent {}
+
 describe('GameMainPageComponent', () => {
   let component: GameMainPageComponent;
   let fixture: ComponentFixture<GameMainPageComponent>;
@@ -28,12 +37,3 @@ describe('GameMainPageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-/**
- * Mock game-board component
- */
-@Component({
-  selector: 'se-game-board',
-  template: '<div>Mock game-board component</div>',
-})
-class MockGameBoardComponent {}

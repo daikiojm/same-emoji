@@ -1,1 +1,3 @@
-<router-outlet></router-outlet>
+<main [@routerTransition]="triggerAnimation(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</main>

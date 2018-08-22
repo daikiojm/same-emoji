@@ -11,6 +11,12 @@ body {
 
 // grobal read style
 
+router-outlet ~ * {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
 
 @mixin font {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
