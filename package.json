@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "jest",
+    "test:ci": "jest --ci --silent --runInBand",
+    "test:watch": "jest --watch --onlyChanged",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "firebase deploy --only hosting",
