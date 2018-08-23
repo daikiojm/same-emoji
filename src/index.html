@@ -11,6 +11,30 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <se-app-root></se-app-root>
+  <se-app-root>
+    <style>
+      .wapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+      }
+
+      .loading-emoji {
+        font-size: 100px;
+        text-align: center;
+        line-height: 50px;
+      }
+
+      .loading-text {
+        font-size: 24px;
+        text-align: center;
+      }
+    </style>
+    <div class="wapper">
+      <p class="loading-emoji">🤔</p>
+      <p class="loading-text">Loading...</p>
+    </div>
+  </se-app-root>
 </body>
 </html>
