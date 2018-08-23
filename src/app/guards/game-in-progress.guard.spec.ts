@@ -1,4 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { GameInProgressGuard } from './game-in-progress.guard';
@@ -6,7 +7,7 @@ import { GameInProgressGuard } from './game-in-progress.guard';
 describe('GameInProgressGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, MatDialogModule],
       providers: [GameInProgressGuard],
     });
   });

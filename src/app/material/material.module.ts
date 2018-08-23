@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
   MatCardModule,
+  MatDialogModule,
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
@@ -28,6 +29,7 @@ import {
     MatMenuModule,
     MatToolbarModule,
     MatProgressBarModule,
+    MatDialogModule,
   ],
   exports: [
     MatInputModule,
@@ -42,6 +44,7 @@ import {
     MatMenuModule,
     MatToolbarModule,
     MatProgressBarModule,
+    MatDialogModule,
   ],
 })
 export class MaterialModule {}
