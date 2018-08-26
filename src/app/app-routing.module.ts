@@ -30,6 +30,7 @@ const routes: Routes = [
   {
     path: 'result',
     component: GameResultPageComponent,
+    canActivate: [GameInProgressGuard],
     data: { animation: 'result' },
   },
 ];
