@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GameInProgressGuard, GameInterruptionGuard } from './guards';
 import { GameLevelPageComponent, GameMainPageComponent, GameResultPageComponent, StartUpPageComponent } from './pages';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: 'start',
