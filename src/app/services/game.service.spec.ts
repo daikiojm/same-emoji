@@ -12,4 +12,12 @@ describe('GameService', () => {
   it('should be created', inject([GameService], (service: GameService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should have properties and public functions', inject([GameService], (service: GameService) => {
+    expect(service.emojiList$).toBeTruthy();
+    expect(service.gameStatus$).toBeTruthy();
+    expect(service.initGame).toBeTruthy();
+    expect(service.selectEmoji).toBeTruthy();
+    expect(service.destroy).toBeTruthy();
+  }));
 });

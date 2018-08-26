@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { GameService } from '../../services';
@@ -9,8 +9,8 @@ import { GameEmoji } from '../../types';
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.scss'],
 })
-export class GameBoardComponent implements OnInit, OnDestroy {
-  emojis$: Observable<GameEmoji[]> | null = null;
+export class GameBoardComponent implements OnInit {
+  emojiList$: Observable<GameEmoji[]> | null = null;
   clones$: Observable<GameEmoji[]> | null = null;
 
   rangeX = 400;
@@ -21,15 +21,13 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // init game board data.
     this.gameService.initGame();
-    this.emojis$ = this.gameService.emojis$;
-    this.clones$ = this.gameService.emojis$;
+    this.emojiList$ = this.gameService.emojiList$;
+    this.clones$ = this.gameService.emojiList$;
 
     // init range from window size.
     this.rangeX = window.innerWidth;
     this.rangeY = window.innerHeight;
   }
-
-  ngOnDestroy() {}
 
   onClickEmoji(key: string): void {
     this.gameService.selectEmoji(key, true);

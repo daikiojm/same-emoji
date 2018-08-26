@@ -1,4 +1,4 @@
-<ng-container *ngFor="let emoji of emojis$ | async">
+<ng-container *ngFor="let emoji of emojiList$ | async">
   <se-emoji
   [emoji]="emoji"
   [change]="emoji.selected.primary"
