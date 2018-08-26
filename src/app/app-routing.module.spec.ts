@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameLevelPageComponent, GameMainPageComponent, GameResultPageComponent, StartUpPageComponent } from './pages';
+import { ToMinutesPipe } from './pipes/to-minutes.pipe';
 import { TestingModule } from './testing';
 
 describe('app routing tests', () => {
@@ -16,7 +17,14 @@ describe('app routing tests', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes), TestingModule],
-      declarations: [AppComponent, StartUpPageComponent, GameLevelPageComponent, GameResultPageComponent, GameMainPageComponent],
+      declarations: [
+        AppComponent,
+        StartUpPageComponent,
+        GameLevelPageComponent,
+        GameResultPageComponent,
+        GameMainPageComponent,
+        ToMinutesPipe,
+      ],
     });
 
     router = TestBed.get(Router);

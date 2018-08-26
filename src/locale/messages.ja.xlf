@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="28e27e8be9688c938e62801f98b5ec8b7e3aa1d6" datatype="html">
+        <source>same emoji</source>
+        <target>絵文字消すゲー</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/start-up-page/start-up-page.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="abc6e2ac76c3b36ec4e494089bca7c9871af6de8" datatype="html">
+        <source>Select the same emoji and erase 👾</source>
+        <target>ペアの絵文字を選んで消すだけ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/start-up-page/start-up-page.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="57a8247144b5244a69f9165c4bc80670d4f60967" datatype="html">
+        <source>Start Now!</source>
+        <target>すぐに始める</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/start-up-page/start-up-page.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2ebfa5b1c2b280a2c47ccba67756a47050ebd767" datatype="html">
+        <source>Start with Level Select</source>
+        <target>レベル選択をして始める</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/start-up-page/start-up-page.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="11c1da54010b56edf8b16f9fa68a0529a4d1dd49" datatype="html">
+        <source>Level select</source>
+        <target>レベル選択</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-level-page/game-level-page.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="78e563acaffc3be704c8a4edfe7cb5952d0a3049" datatype="html">
+        <source>Easy</source>
+        <target>簡単</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-level-page/game-level-page.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="077e90416bdae39a40441d0b94c5a9e8fcad4514" datatype="html">
+        <source>Normal</source>
+        <target>普通</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-level-page/game-level-page.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="020e1a90e6b24c07e15be035e13f980be0c968a7" datatype="html">
+        <source>Hard</source>
+        <target>苦行</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-level-page/game-level-page.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="08820b581943e9cabe9482fd951d9b45544704be" datatype="html">
+        <source>TIME: <x id="INTERPOLATION" equiv-text="{{ gameClock$ | async | toMinutes }}"/></source>
+        <target>タイム: <x id="INTERPOLATION" equiv-text="{{ gameClock$ | async | toMinutes }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-main-page/game-main-page.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4ed5828b6f1b0b84c49fbeb292d1a0ea98793afc" datatype="html">
+        <source>SCORE: <x id="INTERPOLATION" equiv-text="{{ status?.score.cleared }}"/> / <x id="INTERPOLATION_1" equiv-text="{{ status?.score.base }}"/></source>
+        <target>スコア: <x id="INTERPOLATION" equiv-text="{{ status?.score.cleared }}"/> / <x id="INTERPOLATION_1" equiv-text="{{ status?.score.base }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-main-page/game-main-page.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c6167c820470749c87b8805d25780da6bce6852c" datatype="html">
+        <source>Game Clear 🎊</source>
+        <target>ゲームクリア 🎊</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-result-page/game-result-page.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="671f25b8ac881e190a57ba30392174cdfc1d0f7e" datatype="html">
+        <source>GAME LEVEL: Easy</source>
+        <target>レベル: 簡単</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-result-page/game-result-page.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="53120008319918c0ce07abf5d5119a86089e4f6b" datatype="html">
+        <source>GAME LEVEL: Normal</source>
+        <target>レベル: 普通</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-result-page/game-result-page.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6fa640412c5f0cc8db5170888663d1d6217581b5" datatype="html">
+        <source>GAME LEVEL: Hard</source>
+        <target>レベル: 苦行</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-result-page/game-result-page.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a47fd16deaa33561137ced76385b603e1f3ee83c" datatype="html">
+        <source>TIME: <x id="INTERPOLATION" equiv-text="{{ resultTime | toMinutes }}"/></source>
+        <target>タイム: <x id="INTERPOLATION" equiv-text="{{ resultTime | toMinutes }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-result-page/game-result-page.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="413faa5f7bbeadfa80d91db98cd1fae5b61fb5ad" datatype="html">
+        <source>MISTAKES: <x id="INTERPOLATION" equiv-text="{{ mistakes }}"/></source>
+        <target>ミス: <x id="INTERPOLATION" equiv-text="{{ mistakes }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-result-page/game-result-page.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="38e0956efb7c78e758d638c8f1e5c99859b82836" datatype="html">
+        <source>Retry</source>
+        <target>もう一度</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/game-result-page/game-result-page.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0b432c02e964d49cede875e2126cb1b5285fcbaf" datatype="html">
+        <source>Confirm Navigation</source>
+        <target>このページを離れてもよろしいですか？</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/leave-confirm-dialog/leave-confirm-dialog.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a933fa962642f4df1cf91668eb1bc0ca3d4d1b30" datatype="html">
+        <source>Are you sure you want to interrupt the game?</source>
+        <target>ゲームが中断されますが、よろしいですか？</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/leave-confirm-dialog/leave-confirm-dialog.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <target>キャンセル</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/leave-confirm-dialog/leave-confirm-dialog.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7e6c975ebea8b5f8b120905ca7acf9f8edf59d8e" datatype="html">
+        <source>OK</source>
+        <target>中断する</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/leave-confirm-dialog/leave-confirm-dialog.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

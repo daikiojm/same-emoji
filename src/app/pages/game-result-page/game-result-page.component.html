@@ -2,19 +2,24 @@
   <div class="result-wrapper">
 
     <div class="result">
-      <h3>Game Clear 🎊</h3>
+      <h3 i18n>Game Clear 🎊</h3>
 
       <mat-divider></mat-divider>
-      <p>GAME LEVEL: {{ level | titlecase }}</p>
+      <ng-container [ngSwitch]="level">
+        <p i18n *ngSwitchCase="'easy'">GAME LEVEL: Easy</p>
+        <p i18n *ngSwitchCase="'normal'">GAME LEVEL: Normal</p>
+        <p i18n *ngSwitchCase="'hard'">GAME LEVEL: Hard</p>
+      </ng-container>
       <mat-divider></mat-divider>
-      <p class="result-item">TIME: {{ resultTime | toMinutes }}</p>
+      <p i18n class="result-item">TIME: {{ resultTime | toMinutes }}</p>
       <mat-divider></mat-divider>
-      <p>MISTAKES: {{ mistakes }}</p>
+      <p i18n>MISTAKES: {{ mistakes }}</p>
       <mat-divider></mat-divider>
     </div>
 
     <div class="control-section">
         <button
+        i18n
         mat-stroked-button
         class="button"
         color="primary"

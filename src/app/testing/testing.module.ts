@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 
 import { MaterialModule } from '../material/material.module';
-import { ToMinutesPipe } from '../pipes';
 import { MockGameBoardComponent } from './testing.components';
 
 @NgModule({
-  declarations: [ToMinutesPipe, MockGameBoardComponent],
+  declarations: [MockGameBoardComponent],
   imports: [MaterialModule],
-  exports: [MaterialModule, ToMinutesPipe, MockGameBoardComponent],
+  exports: [MaterialModule, MockGameBoardComponent],
 })
 export class TestingModule {}

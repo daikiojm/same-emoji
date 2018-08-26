@@ -2,18 +2,32 @@
   <div class="level-select-wrapper">
 
     <div class="title-section">
-      <h3>Level select</h3>
+      <h3 i18n>Level select</h3>
     </div>
 
     <div class="control-section">
-      <ng-container *ngFor="let level of gameLevels">
-        <button
-        mat-stroked-button
-        class="button"
-        color="primary"
-        (click)="onClickLevelButton(level)"
-        >{{ level | titlecase }}</button>
-      </ng-container>
+      <button
+      i18n
+      mat-stroked-button
+      class="button"
+      color="primary"
+      (click)="onClickLevelButton('easy')"
+      >Easy</button>
+      <button
+      i18n
+      mat-stroked-button
+      class="button"
+      color="primary"
+      (click)="onClickLevelButton('normal')"
+      >Normal</button>
+      <button
+      i18n
+      mat-stroked-button
+      class="button"
+      color="primary"
+      (click)="onClickLevelButton('hard')"
+      >Hard</button>
+
     </div>
 
   </div>

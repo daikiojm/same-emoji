@@ -46,6 +46,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
+              "outputPath": "dist/same-emoji",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
@@ -53,6 +54,21 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "en": {
+              "aot": true,
+              "outputPath": "dist/same-emoji/en",
+              "optimization": true,
+              "sourceMap": false
+            },
+            "ja": {
+              "aot": true,
+              "outputPath": "dist/same-emoji/ja",
+              "optimization": true,
+              "sourceMap": false,
+              "i18nFile": "src/locale/messages.ja.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ja"
             }
           }
         },
@@ -64,6 +80,9 @@
           "configurations": {
             "production": {
               "browserTarget": "same-emoji:build:production"
+            },
+            "ja": {
+              "browserTarget": "same-emoji:build:ja"
             }
           }
         },
