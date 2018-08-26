@@ -78,7 +78,7 @@ describe('TimerService', () => {
 
     tick(2000);
 
-    expect(isStoppedObservable(service.timer$)).toBe(false);
+    expect(service.timer$.subscribe(() => {}).closed).toBeFalsy();
 
     service.stopTimer();
 
@@ -86,16 +86,8 @@ describe('TimerService', () => {
 
     service.destroy();
 
-    expect(isStoppedObservable(service.timer$)).toBe(true);
+    expect(service.timer$.subscribe(() => {}).closed).toBeTruthy();
 
     discardPeriodicTasks();
   }));
 });
-
-// read internal property from Observable object.
-function isStoppedObservable(observable: Observable<any>): boolean {
-  // tslint:disable-next-line
-  const stringifyed = JSON.stringify(observable.source);
-  const parsed = <any>JSON.parse(stringifyed);
-  return parsed.isStopped ? true : false;
-}
