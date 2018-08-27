@@ -58,12 +58,14 @@
             "en": {
               "aot": true,
               "outputPath": "dist/same-emoji/en",
+              "baseHref": "/en/",
               "optimization": true,
               "sourceMap": false
             },
             "ja": {
               "aot": true,
               "outputPath": "dist/same-emoji/ja",
+              "baseHref": "/ja/",
               "optimization": true,
               "sourceMap": false,
               "i18nFile": "src/locale/messages.ja.xlf",
@@ -81,8 +83,13 @@
             "production": {
               "browserTarget": "same-emoji:build:production"
             },
+            "en": {
+              "browserTarget": "same-emoji:build:en",
+              "baseHref": "/en/"
+            },
             "ja": {
-              "browserTarget": "same-emoji:build:ja"
+              "browserTarget": "same-emoji:build:ja",
+              "baseHref": "/ja/"
             }
           }
         },

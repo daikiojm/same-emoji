@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:en": "ng serve --configuration=en",
     "start:ja": "ng serve --configuration=ja",
     "build": "npm run build:en && npm run build:ja",
-    "build:en": "ng build --configuration=en --base-href /en/",
-    "build:ja": "ng build --configuration=ja --base-href /ja/",
+    "build:en": "ng build --configuration=en",
+    "build:ja": "ng build --configuration=ja",
     "test": "jest",
     "test:ci": "jest --ci --silent --runInBand",
     "test:watch": "jest --watch --onlyChanged",
