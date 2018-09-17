@@ -20,3 +20,8 @@ export interface GameStatus {
   mistakes: number;
   status: Status;
 }
+
+export enum Language {
+  English = 'en',
+  Japanese = 'ja',
+}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { gameLevels } from '../../constants';
-import { GameService } from '../../services/game.service';
+import { GameService } from '../../services';
 import { Level } from '../../types';
 
 @Component({
@@ -18,6 +18,6 @@ export class GameLevelPageComponent {
   onClickLevelButton(level: Level): void {
     this.gameService.initGame(level);
 
-    this.router.navigate(['/play']);
+    this.router.navigateByUrl('/play');
   }
 }

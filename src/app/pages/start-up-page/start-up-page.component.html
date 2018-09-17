@@ -1,4 +1,10 @@
 <div class="se-container">
+  <button mat-stroked-button class="language-select-button" [matMenuTriggerFor]="menu">Language</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onClickLanguage(languages.English)">English</button>
+    <button mat-menu-item (click)="onClickLanguage(languages.Japanese)">日本語</button>
+  </mat-menu>
+
   <div class="start-up-wrapper">
 
     <div class="title-section">

@@ -60,7 +60,13 @@
               "outputPath": "dist/same-emoji/en",
               "baseHref": "/en/",
               "optimization": true,
-              "sourceMap": false
+              "sourceMap": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             },
             "ja": {
               "aot": true,
@@ -70,7 +76,13 @@
               "sourceMap": false,
               "i18nFile": "src/locale/messages.ja.xlf",
               "i18nFormat": "xlf",
-              "i18nLocale": "ja"
+              "i18nLocale": "ja",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },

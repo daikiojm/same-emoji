@@ -12,7 +12,6 @@ import { TestingModule } from './testing';
 describe('app routing tests', () => {
   let location: Location;
   let router: Router;
-  let fixture;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -29,7 +28,6 @@ describe('app routing tests', () => {
 
     router = TestBed.get(Router);
     location = TestBed.get(Location);
-    fixture = TestBed.createComponent(AppComponent);
     router.initialNavigation();
   });
 

@@ -18,7 +18,7 @@ export class GameBoardComponent implements OnInit {
 
   constructor(private gameService: GameService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     // init game board data.
     this.gameService.initGame();
     this.emojiList$ = this.gameService.emojiList$;

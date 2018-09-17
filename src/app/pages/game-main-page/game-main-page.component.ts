@@ -36,7 +36,7 @@ export class GameMainPageComponent implements OnInit, OnDestroy {
       if (status.status === 'clear') {
         this.timerService.stopTimer();
 
-        this.router.navigate(['result']);
+        this.router.navigateByUrl('/result');
       }
     });
   }

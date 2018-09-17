@@ -7,3 +7,5 @@ export const gameLevels: { [key: string]: number } = {
 };
 
 export const defaultLevel: Level = 'normal';
+
+export const defaultHost = 'http://localhost:4200';
