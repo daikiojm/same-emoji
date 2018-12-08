@@ -7,7 +7,6 @@ import { GameEmoji } from '../../types';
 @Component({
   selector: 'se-game-board',
   templateUrl: './game-board.component.html',
-  styleUrls: ['./game-board.component.scss'],
 })
 export class GameBoardComponent implements OnInit {
   emojiList$: Observable<GameEmoji[]> | null = null;
